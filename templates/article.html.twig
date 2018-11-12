@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('article_show', {'id': article.id }) }}">{{article.title}} : {{ article.content }}</a>
+{% endblock %}

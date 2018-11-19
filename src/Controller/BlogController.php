@@ -62,7 +62,6 @@ class BlogController extends AbstractController
      * @Route("/category/{category}", name="show_articles_in_category")
      *
      */
-
     public function showCategorywitharticles(Category $category): Response
     {
         return $this->render('blog/articles.html.twig', [
@@ -95,12 +94,13 @@ class BlogController extends AbstractController
             ['articles' => $articles]
         );
     }
+
+
     /**
-     * @Route("/category/{category}/articles", name="list_by_category")
+     * @Route("/blog/category/{category}", name="list_by_category")
      * @return Response
      *
      */
-
     public function showByCategory(string $category): Response
     {
         $selectedcategory=$this->getDoctrine()
@@ -117,6 +117,5 @@ class BlogController extends AbstractController
             ]
         );
     }
-
 }
 

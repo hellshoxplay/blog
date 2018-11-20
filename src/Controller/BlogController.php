@@ -10,9 +10,12 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Form\ArticleSearchType;
+use App\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class BlogController extends AbstractController
@@ -77,21 +80,35 @@ class BlogController extends AbstractController
      * @Route("/", name="homepage")
      * @return Response A response instance
      */
-    public function index() : Response
+    public function index(Request $request) : Response
     {
-        $articles = $this->getDoctrine()
-            ->getRepository(Article::class)
+        $categories = $this->getDoctrine()
+            ->getRepository(Category::class)
             ->findAll();
 
-        if (!$articles) {
+        if (!$categories) {
             throw $this->createNotFoundException(
-                'No article found in article\'s table.'
+                'No category found in category\'s table.'
             );
         }
 
+        $category = new Category();
+        $form = $this->createForm(CategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()&& $form->isValid()){
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($category);
+            $em->flush();
+        };
+
+
         return $this->render(
-            'blog/index.html.twig',
-            ['articles' => $articles]
+            'blog/index.html.twig', [
+                'categories' => $categories,
+                'category' => $category,
+                'form' => $form->createView(),
+            ]
         );
     }
 

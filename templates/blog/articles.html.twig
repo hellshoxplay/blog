@@ -3,6 +3,6 @@
 {% block body %}
     <h1>{{ category.name }}</h1>
     {% for article in articles %}
-        <li>{{ article.title }} : {{ article.content }}</li>
+        <li><a href="/blog/{{ article.title }}">{{ article.title }}</a> : {{ article.content }}</li>
     {% endfor %}
 {% endblock %}

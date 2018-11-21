@@ -1,0 +1,19 @@
+//on charge le scss bootstrap
+
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: #c0ae8a;
+}
+
+.navbar {
+    img {
+        width: 200px;
+        height: 200px;
+    }
+    height: 100px;
+}
+
+h2{
+    color : #e53530;
+}

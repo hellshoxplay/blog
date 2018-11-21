@@ -2,11 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
     </head>
     <body>
+    {% block header %}{%  include 'blog/navbar.html.twig'%}{% endblock %}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+
+        {% endblock %}
     </body>
+
 </html>

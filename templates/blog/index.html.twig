@@ -2,8 +2,6 @@
 
 {% block title %}Index{% endblock %}
 
-{% block stylesheets %}{% endblock %}
-
 {% block body %}
     <h2>Ajouter un article! </h2>
 
@@ -16,16 +14,9 @@
 
     {% for category in categories %}
         <div>
-            <h2>{{ loop.index }} / {{ category.id }} : {{category.name }}</h2>
+            <h3>{{ loop.index }} / <a href="/category/{{ category.id }}">{{ category.id }} : {{category.name }}</a></h3>
         </div>
     {% endfor %}
-
-    <a href="{{ path('homepage') }}">
-        Back to homepage.
-    </a>
-
-
-
 
 {% endblock %}
 

@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ slug }}{% endblock %}
+
+{% block body %}
+    <div>
+        <h1>Real article's title : {{ article.title }}</h1>
+        <h2>Category : {{ article.category.name }}</h2>
+        <p>
+            <strong>Tags :</strong>
+            {% for tag in article.tags %}
+                <span class="badge badge-warning">
+                        <a href="{{ path('show_tag',
+                            {'name' : tag.name|lower|replace({' ':'-'}) }) }}">
+                            {{ tag.name }}
+                        </a>
+                    </span>
+            {% else %}
+                <span>No tags for this article</span>
+            {% endfor %}
+        </p>
+        <p>{{ article.content }}</p>
+    </div>
+
+    <p>
+        <a role="button" class="btn btn-secondary" href="">
+            Back to homepage
+        </a>
+    </p>
+{% endblock %}

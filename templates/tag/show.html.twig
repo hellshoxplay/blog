@@ -1,0 +1,27 @@
+{%  extends "base.html.twig" %}
+
+{% block title %}Tag : {{ tag.name }}{% endblock %}
+
+{% block titlepage %}All articles with tag : {{ tag.name }} {% endblock %}
+
+{% block body %}
+    <ul>
+        {%  for article in tag.articles %}
+            <li>
+                <h2>{{ article.title }}</h2>
+                <p>
+                    Category : {{ article.category.name }} //
+                    <a href="{{ path('blog_show',
+                        {'slug' : article.title|lower|replace({' ':'-'}) }) }}">
+                        Read this article.
+                    </a>
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>
+        <a role="button" class="btn btn-secondary" href="">
+            Back to homepage
+        </a>
+    </p>
+{%  endblock %}
